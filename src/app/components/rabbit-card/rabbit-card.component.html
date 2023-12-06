@@ -1,0 +1,15 @@
+<div class="mt-4">
+    <div class="d-flex justify-content-start gap-4 flex-wrap">
+        @for (rabbit of rabbits; track rabbit.RabbitID ) {
+            <div class="card" style="width: 18rem; max-height: 500px;">
+                <img src="https://www.vetcarepethospital.ca/wp-content/uploads/sites/247/2022/03/petrabbitcare-1-scaled.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"> {{rabbit.Name}} </h5>
+                    <p class="card-text"> {{rabbit.Description}} </p>
+                    <a routerLink="asdf" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        }
+    </div>
+    
+</div>
