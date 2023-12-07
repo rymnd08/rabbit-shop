@@ -1,1 +1,51 @@
-<p>login works!</p>
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card p-4" style="width: 380px;">
+        <form action="" [formGroup]="LoginForm" (ngSubmit)="handleSubmit()">
+            <h3 class="mb-4">Login</h3>
+
+            <!-- email field  -->
+            <div class="form-floating mb-4">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" formControlName="email">
+                <label for="floatingInput">Email address</label>
+
+                <!-- email validations -->
+                @if (email?.touched && email?.hasError('required')) {
+                  <small class="text-danger">Email can't be empty</small>
+                }
+                @else if (email?.touched && email?.hasError('email')) {
+                  <small class="text-danger">Invalid email</small>
+                }
+
+            </div>
+
+              <!-- Password field -->
+              <div class="form-floating mb-3">
+                <input [type]="showPassword ? 'text' : 'password' " class="form-control" id="floatingPassword" placeholder="Password" name="password" formControlName="password" >
+                <label for="floatingPassword">Password</label>
+
+                <!-- password validations -->
+                @if(password?.touched && password?.hasError('required')){
+                  <small class="text-danger">Password can't be empty</small>
+                }
+                @else if (password?.touched && password?.errors) {
+                  <small class="text-danger">Password must be at least 6 characters</small>
+                }
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (change)="showPassword = !showPassword">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Show password
+                    </label>
+                </div>
+              </div>
+
+              <button type="submit" class="btn w-100 btn-primary mb-4" [disabled]="!LoginForm.valid" >Login</button>
+
+              <div class="d-flex justify-content-center align-items-center flex-column">
+                <h6><button type="button" (click)="signInWithGoogle()" class="btn btn-transparent">Sign in with Google <i class="bi bi-google"></i></button></h6>
+                <a routerLink="/create-acc" class="">Create account</a>
+              </div>
+
+        </form>
+    </div>
+</div>

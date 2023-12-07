@@ -1,1 +1,53 @@
-<p>create-account works!</p>
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card p-4" style="width: 380px;">
+        <form action="" [formGroup]="CreateAccountForm" (ngSubmit)="handleSubmit()">
+            <h3 class="mb-4">Create Account</h3>
+            <div class="form-floating mb-4">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" formControlName="email">
+                <label for="floatingInput">Email address</label>
+                @if (email?.touched && email?.hasError('required')) {
+                    <small class="text-danger">Email can't be empty</small>
+                }
+                @else if (email?.touched && email?.hasError('email')) {
+                    <small class="text-danger">Email is invalid</small>
+                }
+            </div>
+            <div class="form-floating mb-3">
+                <input [type]="showPassword ? 'text' : 'password' " class="form-control" id="floatingPassword" placeholder="Password" name="password" formControlName="password" >
+                <label for="floatingPassword">Password</label>
+                @if (password?.touched && password?.hasError('required')) {
+                    <small class="text-danger">Password can't be empty</small>
+                }
+                @else if (password?.touched && password?.errors) {
+                    <small class="text-danger">Password must be at least 6 characters</small>
+                }
+                
+            </div>
+            <div class="form-floating mb-3">
+                <input [type]="showPassword ? 'text' : 'password' " class="form-control"  id="floatingPassword2" placeholder="Password" name="confirmPassword" formControlName="confirmPassword" >
+                <label for="floatingPassword2">Repeat password</label>
+            
+                @if (confirmPassword?.touched && confirmPassword?.hasError('required')) {
+                    <small class="text-danger">Password can't be empty</small>
+                }
+                @else if(CreateAccountForm.hasError('passwordMismatch') && (CreateAccountForm.get('confirmPassword')!.dirty || CreateAccountForm.get('confirmPassword')!.touched)){
+                    <small class="text-danger">Password do not match</small>
+                }
+                @else if (confirmPassword?.touched && confirmPassword?.errors) {
+                    <small class="text-danger">Password must be at least 6 characters</small>
+                }
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (change)="showPassword = !showPassword">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Show password
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn w-100 btn-dark mb-4" >Create</button>
+            <div class="text-center">
+                <a routerLink="/login" class="">Already have an account?</a>
+            </div>
+        </form>
+    </div>
+</div>

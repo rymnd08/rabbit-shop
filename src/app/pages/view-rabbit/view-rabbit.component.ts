@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { rabbits } from '../../components/rabbit-card/rabbit-card.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { rabbits } from '../../shared/rabbit.interface';
 
 @Component({
   selector: 'app-view-rabbit',

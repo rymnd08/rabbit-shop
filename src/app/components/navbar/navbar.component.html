@@ -1,32 +1,41 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container">
-        <a class="navbar-brand" routerLink="#">Rabbit Pets</a>
+        <a class="navbar-brand" routerLink="/">Rabbit Pets</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+            <!-- routes -->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="my-rabbits">My Rabbits</a>
+                    <a class="nav-link" routerLink="/my-rabbits" routerLinkActive="active" >My Rabbits</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="#">Pricing</a>
-                </li>
-                <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
-					<a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
-                        <img height="25" src="https://static-00.iconduck.com/assets.00/profile-circle-icon-2048x2048-cqe5466q.png" alt=""> 
-                    </a>
-					<div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
-						<a ngbDropdownItem href="#" (click)="$event.preventDefault()">Action</a>
-						<a ngbDropdownItem href="#" (click)="$event.preventDefault()">Another action</a>
-						<a ngbDropdownItem href="#" (click)="$event.preventDefault()">Logout</a>
-					</div>
-				</li>
+
+                @if(!isLogin){
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/login">Login</a>
+                    </li>
+                }
+
+                @else{
+                    <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
+                        <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+                            <img height="25" [src]="photoUrl" class="rounded-pill" alt=""> 
+                        </a>
+                        <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+                            <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Action</a>
+                            <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Another action</a>
+                            <a ngbDropdownItem href="#" (click)="signOut($event)">Logout</a>
+                        </div>
+                    </li>
+                }
             </ul>
+
         </div>
     </div>
 </nav>
