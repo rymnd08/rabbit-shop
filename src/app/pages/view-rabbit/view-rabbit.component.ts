@@ -1,34 +1,23 @@
-import { CurrencyPipe, SlicePipe } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-
-export type rabbits = {
-  RabbitID: number
-  UserID: number
-  Name: string
-  Age: number
-  Color: string
-  Description: string
-  UploadDate: string
-}
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { rabbits } from '../../components/rabbit-card/rabbit-card.component';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
-  selector: 'app-rabbit-card',
+  selector: 'app-view-rabbit',
   standalone: true,
-  imports: [NgbPaginationModule, SlicePipe, RouterModule, CurrencyPipe],
-  templateUrl: './rabbit-card.component.html',
-  styleUrl: './rabbit-card.component.css'
+  imports: [NavbarComponent],
+  templateUrl: './view-rabbit.component.html',
+  styleUrl: './view-rabbit.component.css'
 })
-export class RabbitCardComponent {
-
-  rabbits: rabbits[] = []
-
-  collectionSize: number = this.rabbits.length
-  pageSize: number = 8  
-  page: number = 1
+export class ViewRabbitComponent implements OnInit {
   
+  rabbits: rabbits | undefined
+
+  constructor(private route: ActivatedRoute){}
+
   ngOnInit(): void {
+    const rabbitID = this.route.snapshot.params['id']
     const rabbits = [
       {
         RabbitID: 1,
@@ -76,7 +65,7 @@ export class RabbitCardComponent {
         UploadDate: "2023-12-07",
       },
       {
-        RabbitID: 5,
+        RabbitID: 6,
         UserID: 456,
         Name: "Nibbles",
         Age: 1,
@@ -85,7 +74,7 @@ export class RabbitCardComponent {
         UploadDate: "2023-12-07",
       },
       {
-        RabbitID: 5,
+        RabbitID: 7,
         UserID: 456,
         Name: "Nibbles",
         Age: 1,
@@ -94,7 +83,7 @@ export class RabbitCardComponent {
         UploadDate: "2023-12-07",
       },
       {
-        RabbitID: 5,
+        RabbitID: 8,
         UserID: 456,
         Name: "Nibbles",
         Age: 1,
@@ -103,7 +92,7 @@ export class RabbitCardComponent {
         UploadDate: "2023-12-07",
       },
       {
-        RabbitID: 5,
+        RabbitID: 9,
         UserID: 456,
         Name: "Nibbles",
         Age: 1,
@@ -112,7 +101,7 @@ export class RabbitCardComponent {
         UploadDate: "2023-12-07",
       },
       {
-        RabbitID: 5,
+        RabbitID: 10,
         UserID: 456,
         Name: "Nibbles",
         Age: 1,
@@ -122,6 +111,10 @@ export class RabbitCardComponent {
       },
     ]
 
-    this.rabbits = rabbits
+    const filtered = rabbits.find(rabbit =>{
+      return rabbit.RabbitID === +rabbitID
+    })
+    this.rabbits = filtered
+    console.log(this.rabbits)
   }
 }

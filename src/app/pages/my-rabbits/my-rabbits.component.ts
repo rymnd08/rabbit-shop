@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
-  selector: 'app-not-found',
+  selector: 'app-my-rabbits',
   standalone: true,
   imports: [NavbarComponent],
-  templateUrl: './not-found.component.html',
-  styleUrl: './not-found.component.css'
+  templateUrl: './my-rabbits.component.html',
+  styleUrl: './my-rabbits.component.css'
 })
-export class NotFoundComponent {
+export class MyRabbitsComponent {
 
 }
