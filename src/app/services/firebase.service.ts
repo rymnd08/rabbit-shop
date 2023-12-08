@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { firebaseConfig } from '../../assets/environments/environment';
 import { initializeApp } from "firebase/app";
-import { collection, addDoc, getFirestore } from "firebase/firestore"; 
+import { collection, addDoc, getFirestore, query, getDocs } from "firebase/firestore"; 
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth"
 
 @Injectable({
@@ -16,8 +16,6 @@ export class FirebaseService {
   private provider = new GoogleAuthProvider()
 
   constructor() { }
-
-  createAccount(){}
 
   //firebase auth
   signInWIthGoogle(){
@@ -35,6 +33,12 @@ export class FirebaseService {
   // firestore
   addDocument(collectionName: string, data: object){
     return  addDoc(collection(this.db, collectionName), data)
+  }
+
+  getDocuments(collectionName: string){
+    const q = query(collection(this.db, collectionName));
+    return  getDocs(q);
+
   }
 
   getCurrentUser(){

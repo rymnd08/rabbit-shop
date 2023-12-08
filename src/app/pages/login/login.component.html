@@ -27,7 +27,7 @@
                 @if(password?.touched && password?.hasError('required')){
                   <small class="text-danger">Password can't be empty</small>
                 }
-                @else if (password?.touched && password?.errors) {
+                @else if (password?.touched && password?.errors?.['minlength']) {
                   <small class="text-danger">Password must be at least 6 characters</small>
                 }
 

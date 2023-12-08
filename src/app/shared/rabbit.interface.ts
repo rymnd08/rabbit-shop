@@ -1,9 +1,10 @@
 export type rabbits = {
-    RabbitID: number
-    UserID: number
-    Name: string
-    Age: number
-    Color: string
-    Description: string
-    UploadDate: string
+    rabbitID: string
+    UserID: string
+    breed: string
+    rabbitName: string
+    color: string
+    description: string
+    price: number
+    isAvailable: boolean
 }

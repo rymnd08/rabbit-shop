@@ -1,1 +1,67 @@
-<p>add-rabbit works!</p>
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 80vh;">
+        
+        @if (showAlert) {
+            <div class="alert alert-success" role="alert" style="width: 380px;">
+                {{alertMessage}}
+            </div>
+        }
+
+        <div class="card p-4" style="width: 380px;">
+            <button class="btn btn-close" (click)="router.navigate(['/my-rabbits'])"></button>
+            <form action="" [formGroup]="addRabbitForm" (ngSubmit)="handleSubmit()" >
+
+                <h4>Add rabbit</h4>
+
+                <!-- rabbitname input -->
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control form-control-sm" id="rabbit-name" placeholder="rabbit name" formControlName="rabbitName">
+                    <label for="rabbit-name">Rabbit name</label>
+                    @if (rabbitName?.touched && rabbitName?.errors?.['required']) {
+                        <small class="text-danger">Rabbit name can't be empty</small>
+                    }
+                </div>
+
+                <!-- breed input  -->
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="rabbit-breed" placeholder="rabbit name" formControlName="breed">
+                    <label for="rabbit-breed">Breed</label>
+                    @if (breed?.touched && breed?.errors?.['required']) {
+                        <small class="text-danger">Breed can't be empty</small>
+                    }
+                </div>
+                
+                <!-- color input  -->
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="rabbit-color" placeholder="rabbit name" formControlName="color">
+                    <label for="rabbit-color">Color</label>
+                    @if (color?.touched && color?.errors?.['required']) {
+                        <small class="text-danger">Color can't be empty</small>
+                    }
+                </div>
+
+                <!-- price input  -->
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="rabbit-price" placeholder="rabbit name" formControlName="price">
+                    <label for="rabbit-price">Price</label>
+                    @if (price?.touched && price?.errors?.['required']) {
+                        <small class="text-danger">Price can't be empty</small>
+                    }
+                </div>
+
+                <!-- description input  -->
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" placeholder="rabbit description" id="description" style="height: 100px;" formControlName="description"></textarea>
+                    <label for="description">Description</label>
+                    @if (description?.touched && description?.errors?.['required']) {
+                        <small class="text-danger">Please provide short description</small>
+                    }
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100" [disabled]="!addRabbitForm.valid" >Add</button>
+
+            </form>
+        </div>
+    </div>
+</div>

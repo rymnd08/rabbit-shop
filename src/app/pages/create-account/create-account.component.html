@@ -18,7 +18,7 @@
                 @if (password?.touched && password?.hasError('required')) {
                     <small class="text-danger">Password can't be empty</small>
                 }
-                @else if (password?.touched && password?.errors) {
+                @else if (password?.touched && password?.errors?.['minlength']) {
                     <small class="text-danger">Password must be at least 6 characters</small>
                 }
                 
@@ -33,7 +33,7 @@
                 @else if(CreateAccountForm.hasError('passwordMismatch') && (CreateAccountForm.get('confirmPassword')!.dirty || CreateAccountForm.get('confirmPassword')!.touched)){
                     <small class="text-danger">Password do not match</small>
                 }
-                @else if (confirmPassword?.touched && confirmPassword?.errors) {
+                @else if (confirmPassword?.touched && confirmPassword?.errors?.['minlength']) {
                     <small class="text-danger">Password must be at least 6 characters</small>
                 }
 
