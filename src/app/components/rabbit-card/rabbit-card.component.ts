@@ -2,7 +2,7 @@ import { AsyncPipe, CurrencyPipe, SlicePipe } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { rabbits } from '../../shared/rabbit.interface';
 
 
@@ -17,18 +17,18 @@ export class RabbitCardComponent implements OnChanges {
 
   @Input() rabbits$!:  BehaviorSubject<rabbits[] | null>
 
-  collectionSize: number = 0
-  page: number = 1
+  collectionSize = 0
+  page = 1
   pageSize = 8
+
+  subscription!: Subscription
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes)
-    this.rabbits$.subscribe(rabbits =>{
-      console.log(rabbits)
+    this.subscription = this.rabbits$.subscribe(rabbits =>{
+      if(rabbits != undefined){
+        this.collectionSize = rabbits?.length
+      }
     })
-  }
-
-  ngOnInit(): void {
-    
   }
 }
