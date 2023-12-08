@@ -7,7 +7,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { SlicePipe } from '@angular/common';
 import { rabbits } from '../../shared/rabbit.interface';
 import { FirebaseService } from '../../services/firebase.service';
-
+import { BehaviorSubject, of } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +20,7 @@ import { FirebaseService } from '../../services/firebase.service';
 
 export class HomeComponent implements OnInit {
   
-  rabbits : rabbits[] = []
+  rabbits$ = new BehaviorSubject<rabbits[] | null>(null)
 
   constructor(private fire: FirebaseService){}
 
@@ -37,8 +37,7 @@ export class HomeComponent implements OnInit {
       const snapshot = await this.fire.getDocuments('rabbits')
       snapshot.forEach(doc =>{
       data.push({...doc.data(), rabbitID: doc.id} as rabbits)
-      this.rabbits = data
-      console.log(this.rabbits)
+      this.rabbits$.next(data)
     })
     } catch (error) {
       console.log(error)
