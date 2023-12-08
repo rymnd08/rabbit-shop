@@ -31,14 +31,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getData()
   }
+
   async getData(){
     try {
       let data : rabbits[] = []
       const snapshot = await this.fire.getDocuments('rabbits')
       snapshot.forEach(doc =>{
-      data.push({...doc.data(), rabbitID: doc.id} as rabbits)
-      this.rabbits$.next(data)
-    })
+        data.push({...doc.data(), rabbitID: doc.id} as rabbits)
+        this.rabbits$.next(data)
+      })
     } catch (error) {
       console.log(error)
     }
