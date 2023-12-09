@@ -40,13 +40,22 @@
                         <small class="text-danger">Color can't be empty</small>
                     }
                 </div>
-
+                
                 <!-- price input  -->
                 <div class="form-floating mb-3">
                     <input type="number" class="form-control" id="rabbit-price" placeholder="rabbit name" formControlName="price">
                     <label for="rabbit-price">Price</label>
                     @if (price?.touched && price?.errors?.['required']) {
                         <small class="text-danger">Price can't be empty</small>
+                    }
+                </div>
+                
+                <!-- file input  -->
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Upload image</label>
+                    <input class="form-control" type="file" id="formFile" (change)="handleChange($event)" formControlName="image">
+                    @if (image?.touched && image?.errors?.['required']) {
+                        <small class="text-danger">Image file can't be empty</small>
                     }
                 </div>
 

@@ -3,20 +3,23 @@
 
         @for (rabbit of rabbits$ | async |  slice: (page-1) * pageSize : page * pageSize; track $index ) {
             <div class="card" style="width: 18rem; ">
-                <img src="https://www.vetcarepethospital.ca/wp-content/uploads/sites/247/2022/03/petrabbitcare-1-scaled.jpg" class="card-img-top" alt="...">
+                <img [src]="rabbit.rabbitImageURL" class="card-image" alt="Rabbit image" style="object-fit: cover; height: 200px;">
                 <div class="card-body">
                     <h5 class="card-title"> {{rabbit.rabbitName}} </h5>
-                    <p class="card-text"> {{rabbit.price| currency: 'PHP' }} </p>
+                    <p class="card-text"> {{rabbit.price | currency: 'PHP' }} </p>
                     <a routerLink="view-rabbit/{{rabbit.rabbitID}}" class="btn btn-sm btn-primary">View</a>
                 </div>
             </div>
         }
         @empty {
-            <h3>No rabbits found</h3>
+            <h3>No rabbits listed 😔</h3>
         }
 
     </div>
+
+    <!-- rabbit list pagination  -->
     <div class="d-flex justify-content-center align-items-center mt-4">
         <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" aria-label="Default pagination" />
     </div>
+
 </div>

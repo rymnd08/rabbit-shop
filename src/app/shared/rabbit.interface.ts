@@ -7,4 +7,7 @@ export type rabbits = {
     description: string
     price: number
     isAvailable: boolean
+    rabbitFile: string
+    rabbitImageURL: string
+    image?: string
 }

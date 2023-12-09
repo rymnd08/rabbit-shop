@@ -7,7 +7,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { SlicePipe } from '@angular/common';
 import { rabbits } from '../../shared/rabbit.interface';
 import { FirebaseService } from '../../services/firebase.service';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
