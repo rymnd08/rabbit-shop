@@ -57,7 +57,7 @@ export class AddRabbitComponent implements OnInit {
   async handleSubmit(){
     try {
       this.isLoading = true
-      
+
       // storage data 
       const upload = await this.fire.uploadFile( `rabbits/File_${Date.now()}${this.rabbitImage.name}`, this.rabbitImage)
       const imageURL = await this.fire.getURL(`rabbits/${upload.metadata.name}`)
@@ -71,6 +71,7 @@ export class AddRabbitComponent implements OnInit {
       // success alert 
       this.isLoading = false
       this.alertMessage = 'Rabbit was added successfully'
+      
       this.alertType = 'success'
       this.showAlert = true
       setTimeout(()=> this.showAlert = false, 2000)
